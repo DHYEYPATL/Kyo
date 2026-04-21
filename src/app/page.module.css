@@ -1,0 +1,273 @@
+/* ── Page Layout ──────────────────────────────────────────────────────────── */
+.layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+
+/* ── Top Bar ──────────────────────────────────────────────────────────────── */
+.topBar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  background: rgba(14, 13, 11, 0.90);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+/* ── Brand ────────────────────────────────────────────────────────────────── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brandLogo {
+  font-size: 1.15rem;
+  opacity: 0.9;
+}
+
+.brandIconWrap {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(184,154,94,0.2), rgba(196,169,106,0.1));
+  border: 1px solid rgba(184,154,94,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: 0.95rem;
+  font-weight: 800;
+  background: linear-gradient(120deg, var(--accent-champagne), var(--accent-wheat));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.brandTag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+}
+
+/* ── Top Actions ──────────────────────────────────────────────────────────── */
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+}
+
+.actionBtn:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.pdfBtn {
+  border-color: rgba(168, 110, 110, 0.3);
+  color: #c49090;
+}
+
+.pdfBtn:hover {
+  background: var(--accent-rose-dim);
+  border-color: rgba(168, 110, 110, 0.5);
+  color: #d4a0a0;
+}
+
+.settingsBtn {
+  border-color: rgba(184, 154, 94, 0.3);
+  color: var(--accent-champagne);
+}
+
+.settingsBtn:hover {
+  background: var(--accent-champ-dim);
+}
+
+.settingsBtnAlert {
+  border-color: rgba(196, 169, 106, 0.5);
+  color: var(--accent-wheat);
+  animation: alertPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes alertPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 169, 106, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(196, 169, 106, 0.15); }
+}
+
+.alertDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-wheat);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ── Network Status Pill ──────────────────────────────────────────────────── */
+.networkPill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.networkOnline {
+  background: var(--accent-sage-dim);
+  border-color: rgba(125, 158, 127, 0.4);
+  color: #9aba9c;
+}
+
+.networkOffline {
+  background: var(--accent-rose-dim);
+  border-color: rgba(168, 110, 110, 0.5);
+  color: #c49090;
+  animation: offlinePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes offlinePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.75; }
+}
+
+.networkDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ── Shortcuts hint ───────────────────────────────────────────────────────── */
+.shortcutHint {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.18s ease;
+  font-family: var(--font-mono);
+}
+
+.shortcutHint:hover {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+}
+
+/* ── Phase Badge ──────────────────────────────────────────────────────────── */
+.phaseBadge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Resume session banner ─────────────────────────────────────────────────── */
+.resumeBanner {
+  position: fixed;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  z-index: 500;
+  box-shadow: var(--shadow-card);
+  animation: slideUpBanner 0.2s ease;
+}
+
+@keyframes slideUpBanner {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.resumeDismiss {
+  background: var(--accent-champ-dim);
+  border: 1px solid rgba(184, 154, 94, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+  color: var(--accent-champagne);
+  font-size: 0.73rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  transition: background 0.16s ease;
+}
+
+.resumeDismiss:hover {
+  background: rgba(184, 154, 94, 0.22);
+}
+.columns {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow: hidden;
+}
+
+.col {
+  overflow: hidden;
+  height: 100%;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.col:last-child {
+  border-right: none;
+}

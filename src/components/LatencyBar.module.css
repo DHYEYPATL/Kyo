@@ -1,0 +1,82 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.3rem 1.25rem;
+  background: rgba(14, 13, 11, 0.80);
+  border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metrics {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.divider {
+  width: 1px;
+  height: 11px;
+  background: var(--border-subtle);
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metricLabel {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+.metricValue {
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.metricGood {
+  color: var(--accent-sage);
+}
+
+.metricAvg {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.summarizingPill {
+  font-size: 0.62rem;
+  color: var(--accent-clay);
+  background: rgba(158, 125, 92, 0.12);
+  border: 1px solid rgba(158, 125, 92, 0.25);
+  border-radius: 999px;
+  padding: 0.08rem 0.45rem;
+  animation: breathe 1.5s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.65; }
+  50%       { opacity: 1; }
+}

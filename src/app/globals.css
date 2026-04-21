@@ -1,0 +1,181 @@
+/* ── Design Tokens: Warm Earthy Dark Minimal ──────────────────────────────── */
+:root {
+  /* ── Base palette – rich dark warm neutrals ─── */
+  --bg-base:      #0e0d0b;   /* page background */
+  --bg-surface:   #171614;   /* panel background */
+  --bg-elevated:  #1f1e1b;   /* cards, inputs */
+  --bg-sunken:    #131210;   /* inset / code blocks */
+
+  /* ── Borders ─── */
+  --border-subtle:  #252320;
+  --border-default: #333028;
+  --border-strong:  #48453c;
+
+  /* ── Text ─── */
+  --text-primary:   #ddd7cc;   /* warm cream — never pure white */
+  --text-secondary: #8a857c;   /* muted warm gray */
+  --text-muted:     #5a5750;   /* very dim */
+
+  /* ── Accent palette — all warm pastels, zero blue/purple ─── */
+  --accent-sage:       #7d9e7f;   /* sage green — recording, success */
+  --accent-champagne:  #b89a5e;   /* warm gold — primary actions */
+  --accent-rose:       #a86e6e;   /* dusty rose — stop, danger */
+  --accent-clay:       #9e7d5c;   /* warm clay — secondary */
+  --accent-wheat:      #c4a96a;   /* warm wheat — highlight */
+  --accent-sage-dim:   rgba(125, 158, 127, 0.15);
+  --accent-champ-dim:  rgba(184, 154,  94, 0.15);
+  --accent-rose-dim:   rgba(168, 110, 110, 0.15);
+
+  /* ── Suggestion type colors — warm, distinct, no blue/purple ─── */
+  --type-question:      #7d9e7f;   /* sage */
+  --type-fact-check:    #c4a052;   /* amber */
+  --type-talking-point: #a86e6e;   /* dusty rose */
+  --type-answer:        #9e7d5c;   /* warm clay */
+  --type-clarification: #8fa89e;   /* warm teal-gray */
+
+  /* ── Entity highlight colors ─── */
+  --entity-money:  rgba(196, 160, 82, 0.25);
+  --entity-number: rgba(125, 158, 127, 0.22);
+  --entity-date:   rgba(168, 110, 110, 0.22);
+  --entity-person: rgba(143, 168, 158, 0.20);
+
+  /* ── Typography ─── */
+  --font-sans: var(--font-outfit), 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Radius / Shadow ─── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* ── Reset ──────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbars ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 3px; height: 3px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--border-default); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+/* ── Background — very subtle warm grain texture ───────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 5%,  rgba(184,154, 94, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 80% 10%,  rgba(125,158,127, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 50% 95%,  rgba(168,110,110, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Focus ──────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-champagne);
+  outline-offset: 2px;
+}
+
+/* ── Selection ──────────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(184, 154, 94, 0.28);
+  color: var(--text-primary);
+}
+
+/* ── Entity highlight marks ─────────────────────────────────────────────────── */
+mark.entity-money  { background: var(--entity-money);  color: var(--accent-wheat); border-radius: 3px; padding: 0 2px; }
+mark.entity-number { background: var(--entity-number); color: var(--accent-sage); border-radius: 3px; padding: 0 2px; }
+mark.entity-date   { background: var(--entity-date);   color: var(--accent-rose); border-radius: 3px; padding: 0 2px; }
+mark.entity-person { background: var(--entity-person); color: var(--accent-sage-dim); color: #8fa89e; border-radius: 3px; padding: 0 2px; }
+
+/* ── Toast / Network Banner ─────────────────────────────────────────────────── */
+.toastBanner {
+  position: fixed;
+  bottom: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 18px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 1000;
+  pointer-events: none;
+  animation: toastIn 0.2s ease;
+}
+.toastOffline {
+  background: var(--accent-rose-dim);
+  border: 1px solid var(--accent-rose);
+  color: #d49090;
+}
+.toastOnline {
+  background: var(--accent-sage-dim);
+  border: 1px solid var(--accent-sage);
+  color: #9aba9c;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Keyboard shortcut overlay ──────────────────────────────────────────────── */
+.shortcutsOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 8, 0.8);
+  backdrop-filter: blur(6px);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shortcutsPanel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 28px 36px;
+  min-width: 340px;
+  box-shadow: var(--shadow-card);
+}
+.shortcutsPanel h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+}
+.shortcutsPanel table { width: 100%; border-collapse: collapse; }
+.shortcutsPanel td { padding: 6px 0; font-size: 13px; color: var(--text-secondary); }
+.shortcutsPanel td:first-child { padding-right: 24px; }
+.shortcutsPanel kbd {
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}

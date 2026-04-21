@@ -1,0 +1,325 @@
+/* ── Panel ────────────────────────────────────────────────────────────────── */
+.panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.header {
+  padding: 0.875rem 1rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.icon { font-size: 1rem; opacity: 0.85; }
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* Phase badge (#1) */
+.phaseBadge {
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.loadingPill {
+  font-size: 0.68rem;
+  color: var(--accent-champagne);
+  background: var(--accent-champ-dim);
+  border: 1px solid rgba(184, 154, 94, 0.3);
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  animation: breathe 1.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.batchCount {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.refreshBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.refreshBtn:hover {
+  background: var(--bg-surface);
+  border-color: var(--accent-champagne);
+  color: var(--accent-champagne);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.spinIcon {
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error banner ─────────────────────────────────────────────────────────── */
+.errorBanner {
+  background: var(--accent-rose-dim);
+  border-bottom: 1px solid rgba(168, 110, 110, 0.3);
+  color: #c49090;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ── Scroll area ──────────────────────────────────────────────────────────── */
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.emptyState {
+  text-align: center;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.emptyIcon {
+  font-size: 2rem;
+  opacity: 0.5;
+  margin-bottom: 0.25rem;
+}
+
+.emptyState p {
+  color: var(--text-muted);
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+.emptyHint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.emptyHint kbd {
+  display: inline-block;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+/* ── Skeleton loaders ─────────────────────────────────────────────────────── */
+.skeletonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton {
+  height: 80px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.85; }
+}
+
+.loadingOverlay {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* ── Pinned section ───────────────────────────────────────────────────────── */
+.pinnedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 1px solid rgba(184, 154, 94, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.6rem;
+  background: rgba(184, 154, 94, 0.04);
+}
+
+.pinnedHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-champagne);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pinnedCount {
+  background: var(--accent-champ-dim);
+  border: 1px solid rgba(184, 154, 94, 0.3);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+  font-size: 0.65rem;
+}
+
+/* ── Card grid ────────────────────────────────────────────────────────────── */
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+/* ── Batch ────────────────────────────────────────────────────────────────── */
+.batch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.batchLatest { }
+
+.batchOld {
+  opacity: 0.85;
+}
+
+.batchHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.batchHeader:hover {
+  border-color: var(--border-default);
+  background: var(--bg-surface);
+}
+
+.batchHeader:disabled {
+  cursor: default;
+  background: transparent;
+  border-color: transparent;
+}
+
+.batchHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.latestBadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-sage);
+}
+
+.latestDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-sage);
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.oldBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.batchTime {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.batchLatency {
+  font-size: 0.6rem;
+  color: var(--accent-champagne);
+  font-family: var(--font-mono);
+  background: var(--accent-champ-dim);
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+}
+
+.chevron {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
