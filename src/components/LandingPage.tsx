@@ -104,6 +104,12 @@ export function LandingPage({ onClose }: { onClose?: () => void }) {
           </div>
         </div>
 
+        <div className={styles.creatorInfo}>
+          Developed by <a href="https://www.linkedin.com/in/dhyeypateldev/" target="_blank" rel="noopener noreferrer">Dhyey Patel</a>
+          <span>•</span>
+          <a href="mailto:dhyeypatel2018@gmail.com">Contact</a>
+        </div>
+
         <div className={styles.footer}>
           100% Client Side • No Server State • Privacy First Architecture
         </div>

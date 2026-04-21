@@ -237,17 +237,28 @@ export default function Home() {
       <div className={styles.layout}>
         <header className={styles.topBar}>
           {/* Brand */}
-          <div 
-            className={styles.brand} 
-            onClick={() => setViewLanding(true)} 
-            style={{ cursor: 'pointer' }}
-            title="Return to Kyo Landing Page"
-          >
-            <span className={styles.brandIconWrap}>
-              <IconBrain size={15} style={{ color: 'var(--accent-champagne)' }} />
-            </span>
-            <span className={styles.brandName}>Kyo</span>
-            <span className={styles.brandTag}>[Session Active]</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div 
+              className={styles.brand} 
+              onClick={() => setViewLanding(true)} 
+              style={{ cursor: 'pointer' }}
+              title="Return to Kyo Landing Page"
+            >
+              <span className={styles.brandIconWrap}>
+                <IconBrain size={15} style={{ color: 'var(--accent-champagne)' }} />
+              </span>
+              <span className={styles.brandName}>Kyo</span>
+            </div>
+            
+            <a 
+              href="https://www.linkedin.com/in/dhyeypateldev/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.brandTagLink}
+              title="View Developer LinkedIn"
+            >
+              By Dhyey Patel
+            </a>
           </div>
 
           {/* Top actions */}

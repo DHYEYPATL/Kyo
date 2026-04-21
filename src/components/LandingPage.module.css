@@ -234,8 +234,31 @@
   margin-top: 0.75rem;
 }
 
+.creatorInfo {
+  margin-top: 4rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.creatorInfo a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.creatorInfo a:hover {
+  border-bottom-color: var(--text-primary);
+  color: var(--accent-champagne);
+}
+
 .footer {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   text-transform: uppercase;

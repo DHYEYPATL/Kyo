@@ -67,6 +67,27 @@
   padding: 0.1rem 0.5rem;
 }
 
+.brandTagLink {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.brandTagLink:hover {
+  background: var(--bg-surface);
+  border-color: var(--accent-champagne);
+  color: var(--accent-champagne);
+}
+
 /* ── Top Actions ──────────────────────────────────────────────────────────── */
 .topActions {
   display: flex;
