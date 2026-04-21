@@ -9,7 +9,7 @@ import { SettingsModal } from '@/components/SettingsModal';
 import { LatencyBar } from '@/components/LatencyBar';
 import {
   IconBrain, IconDownload, IconFilePdf, IconSettings, IconTrash2,
-  IconKeyboard, IconWifi, IconWifiOff, IconX,
+  IconKeyboard, IconWifi, IconWifiOff, IconX, IconLogOut
 } from '@/components/Icon';
 import { useAudioRecorder } from '@/hooks/useAudioRecorder';
 import { useSuggestions } from '@/hooks/useSuggestions';
@@ -38,8 +38,9 @@ const SHORTCUTS = [
 ];
 
 export default function Home() {
-  const { settings, isLoaded } = useSettings();
+  const { settings, isLoaded, updateSettings, resetSettings } = useSettings();
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [confirmEnd, setConfirmEnd] = useState(false);
   const [viewLanding, setViewLanding] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
   const sessionStartRef = useRef(Date.now());
@@ -136,6 +137,19 @@ export default function Home() {
     sessionStartRef.current = Date.now();
     setResumePrompt(null);
   }, [clearTranscript, clearBatches, clearChat, clearSummary]);
+
+  // ── End session / Deep Purge ───────────────────────────────────────────────
+  const executeEndSession = useCallback(async () => {
+    try {
+      resetSettings();
+      clearTranscript(); clearBatches(); clearChat(); clearSummary();
+      await clearSession();
+      try { window.localStorage.removeItem('twinmind_settings_v2'); } catch(e) {}
+      try { window.localStorage.clear(); } catch(e) {}
+    } finally {
+      window.location.href = '/'; 
+    }
+  }, [resetSettings, clearTranscript, clearBatches, clearChat, clearSummary]);
 
   // ── Keyboard shortcuts (#15) ───────────────────────────────────────────────
   useKeyboardShortcuts(
@@ -270,6 +284,12 @@ export default function Home() {
               <span>Clear</span>
             </button>
 
+            {/* End Session Purge */}
+            <button className={`${styles.actionBtn} ${styles.pdfBtn}`} onClick={() => setConfirmEnd(true)} title="End Session & Erase Key" aria-label="End Session">
+              <IconLogOut size={12} />
+              <span>End Session</span>
+            </button>
+
             {/* Settings */}
             <button
               id="settings-btn"
@@ -328,6 +348,35 @@ export default function Home() {
 
         <LatencyBar metrics={combinedMetrics} isSummarizing={isSummarizing} />
       </div>
+      {/* Confirm End Session Modal */}
+      {confirmEnd && (
+        <div className={styles.modalOverlay} onClick={() => setConfirmEnd(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()} style={{ maxWidth: '400px', textAlign: 'center' }}>
+            <div style={{ marginBottom: '1.5rem', color: 'var(--accent-rose)' }}>
+              <IconLogOut size={32} />
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', marginBottom: '1rem' }}>End Session?</h2>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6', fontSize: '0.9rem' }}>
+              This will permanently wipe your API key, transcripts, and session memory from your browser. This action cannot be undone.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <button 
+                onClick={() => setConfirmEnd(false)}
+                style={{ background: 'transparent', border: '1px solid var(--border-default)', color: 'var(--text-primary)', padding: '0.75rem 1.5rem', cursor: 'pointer', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', textTransform: 'uppercase' }}
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={executeEndSession}
+                style={{ background: 'var(--accent-rose)', border: 'none', color: '#fff', padding: '0.75rem 1.5rem', cursor: 'pointer', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 600 }}
+              >
+                Erase Everything
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </>
   );
 }
